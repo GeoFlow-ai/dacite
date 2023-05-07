@@ -399,3 +399,10 @@ def test_extract_generic_special():
         _special = True
 
     assert extract_generic(FakeType, defaults) == defaults
+
+def test_is_subclass():
+    class Foo(str):
+        pass
+    foo: Foo = Foo('foo')
+    assert is_instance(foo, str)
+

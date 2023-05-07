@@ -1,6 +1,6 @@
 import sys
 from dataclasses import dataclass, field
-from typing import Dict, Any, Callable, Optional, Type, List
+from typing import Dict, Any, Callable, Optional, Type, List, ClassVar
 
 from dacite.frozen_dict import FrozenDict
 
@@ -19,6 +19,9 @@ class Config:
     check_types: bool = True
     strict: bool = False
     strict_unions_match: bool = False
+    allow_superclasses: bool = False  # allow a JSON field to map to a superclass of the field type
+    follow_type_hints: bool = False  # if we have a type hint for a built-in field, try to cast to it
+    paths: dict[ClassVar, dict[str, str]] = field(default_factory=dict)
 
     @cached_property
     def hashable_forward_references(self) -> Optional[FrozenDict]:

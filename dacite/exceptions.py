@@ -78,3 +78,10 @@ class UnexpectedDataError(DaciteError):
     def __str__(self) -> str:
         formatted_keys = ", ".join(f'"{key}"' for key in self.keys)
         return f"can not match {formatted_keys} to any data class field"
+
+class FieldNotFoundError(DaciteFieldError):
+    def __init__(self, path: str) -> None:
+        super().__init__(field_path=path)
+
+    def __str__(self) -> str:
+        return f"can not find data field {self.field_path}"
