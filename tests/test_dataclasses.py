@@ -89,6 +89,10 @@ def test_has():
 
 
 def test_get():
+    '''
+    Test that paths are working.
+    :return:
+    '''
     assert "foo" == get("a", {"a": "foo"})
     assert {"b": 2} == get("a", {"a": {"b": 2}})
     assert 2 == get("a.b", {"a": {"b": 2}})
