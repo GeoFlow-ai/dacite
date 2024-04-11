@@ -66,6 +66,9 @@ def from_dict(data_class: Type[T], data: Data, config: Optional[Config] = None) 
 
         if data_class in config.paths and field.name in config.paths[data_class]:
             path_or_paths = config.paths[data_class][field.name]
+
+            if "SKIPME" == path_or_paths: continue
+
             try:
                 default = get_default_value_for_field(field, field_type)
             except DefaultValueNotFoundError:
